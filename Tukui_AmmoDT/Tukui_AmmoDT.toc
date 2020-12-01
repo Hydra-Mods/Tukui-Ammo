@@ -1,6 +1,6 @@
-## Interface: 11305
+## Interface: 11306
 ## Title: |cffff8000Tukui|r Ammo
-## Version: 1.01
+## Version: 1.02
 ## Notes: Create a data text to display ammo count
 ## Author: Hydra
 ## RequiredDeps: Tukui
