@@ -6,8 +6,7 @@ local GetItemInfo = GetItemInfo
 local GetInventoryItemID = GetInventoryItemID
 local GetInventoryItemLink = GetInventoryItemLink
 local GetInventoryItemCount = GetInventoryItemCount
-
-local Label = AMMOSLOT
+local AMMOSLOT = AMMOSLOT
 local ThrownSubType = LE_ITEM_WEAPON_THROWN
 
 local OnEnter = function(self)
@@ -47,7 +46,7 @@ local Update = function(self)
 		end
 	end
 	
-	self.Text:SetFormattedText("%s%s:|r %s%s|r", DataText.NameColor, Label, DataText.ValueColor, Count)
+	self.Text:SetFormattedText("%s%s:|r %s%s|r", DataText.NameColor, AMMOSLOT, DataText.ValueColor, Count)
 end
 
 local Enable = function(self)
@@ -72,4 +71,4 @@ local Disable = function(self)
 	self.Text:SetText("")
 end
 
-DataText:Register(Label, Enable, Disable, Update)
+DataText:Register(AMMOSLOT, Enable, Disable, Update)
