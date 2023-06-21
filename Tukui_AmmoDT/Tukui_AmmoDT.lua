@@ -34,16 +34,8 @@ local Update = function(self)
 
 	if (GetInventoryItemID("player", 0) > 0) then -- Ammo slot
 		Count = GetInventoryItemCount("player", 0)
-	else
-		local ThrownSlotID = GetInventoryItemID("player", 18)
-
-		if (ThrownSlotID and ThrownSlotID > 0) then -- Thrown weapons
-			local ItemSubType = select(7, GetItemInfo(GetInventoryItemID("player", 18)))
-
-			if (ItemSubType and ItemSubType == ThrownSubType) then
-				Count = GetInventoryItemCount("player", 18)
-			end
-		end
+	elseif (GetInventoryItemCount("player", 18) and GetInventoryItemCount("player", 18) > 1) then -- Ranged slot
+		Count = GetInventoryItemCount("player", 18)
 	end
 
 	self.Text:SetFormattedText("%s%s:|r %s%s|r", DataText.NameColor, AMMOSLOT, DataText.ValueColor, Count)
@@ -52,7 +44,7 @@ end
 local Enable = function(self)
 	self:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	self:RegisterEvent("UNIT_INVENTORY_CHANGED")
-	self:RegisterEvent("PLAYER_ENTERING_WORLD")
+	self:RegisterEvent("UPDATE_INVENTORY_DURABILITY")
 	self:SetScript("OnEvent", Update)
 	self:SetScript("OnEnter", OnEnter)
 	self:SetScript("OnLeave", OnLeave)
@@ -64,7 +56,7 @@ end
 local Disable = function(self)
 	self:UnregisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	self:UnregisterEvent("UNIT_INVENTORY_CHANGED")
-	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	self:UnregisterEvent("UPDATE_INVENTORY_DURABILITY")
 	self:SetScript("OnEvent", nil)
 	self:SetScript("OnEnter", nil)
 	self:SetScript("OnLeave", nil)
